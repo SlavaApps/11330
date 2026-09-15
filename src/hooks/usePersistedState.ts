@@ -10,10 +10,11 @@ export function usePersistedState<T>(
   const [state, setState] = useState<T>(initial);
   const [hydrated, setHydrated] = useState(false);
   const mounted = useRef(true);
+  const initialValue = useRef(initial);
 
   useEffect(() => {
     mounted.current = true;
-    readValue<T>(key, initial).then(stored => {
+    readValue<T>(key, initialValue.current).then(stored => {
       if (mounted.current) {
         setState(stored);
         setHydrated(true);
@@ -22,7 +23,6 @@ export function usePersistedState<T>(
     return () => {
       mounted.current = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 
   const update = useCallback(

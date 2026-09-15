@@ -7,6 +7,7 @@ export const menuItems: MenuItem[] = [
     category: 'Starters',
     description: 'Hand-cut beef, smoked shallot, capers, rye crisp',
     price: 18,
+    image: 'beef-tartare',
   },
   {
     id: 'menu-02',
@@ -14,6 +15,7 @@ export const menuItems: MenuItem[] = [
     category: 'Starters',
     description: 'Basil oil, aged balsamic, toasted sourdough',
     price: 15,
+    image: 'burrata-and-heirloom-tomato',
   },
   {
     id: 'menu-03',
@@ -21,6 +23,7 @@ export const menuItems: MenuItem[] = [
     category: 'Starters',
     description: 'Lemon pepper, parsley, roasted garlic aioli',
     price: 17,
+    image: 'crispy-calamari',
   },
   {
     id: 'menu-04',
@@ -76,6 +79,7 @@ export const menuItems: MenuItem[] = [
     category: 'Burgers',
     description: 'Buttermilk chicken, cabbage slaw, pickles, spicy mayo',
     price: 20,
+    image: 'crispy-chicken-burger',
   },
   {
     id: 'menu-11',
@@ -83,6 +87,7 @@ export const menuItems: MenuItem[] = [
     category: 'Mains',
     description: 'Herb-roasted potatoes, seasonal vegetables, lemon butter',
     price: 29,
+    image: 'grilled-atlantic-salmon',
   },
   {
     id: 'menu-12',
@@ -90,6 +95,7 @@ export const menuItems: MenuItem[] = [
     category: 'Mains',
     description: 'Grilled striploin, garlic mash, seasonal vegetables, peppercorn jus',
     price: 34,
+    image: 'aaa-striploin-steak',
   },
   {
     id: 'menu-13',
@@ -97,6 +103,7 @@ export const menuItems: MenuItem[] = [
     category: 'Mains',
     description: 'Roasted chicken breast, potato purée, green beans, mushroom jus',
     price: 26,
+    image: 'chicken-supreme',
   },
   {
     id: 'menu-14',
@@ -152,6 +159,7 @@ export const menuItems: MenuItem[] = [
     category: 'Desserts',
     description: 'Warm chocolate centre, vanilla ice cream, cocoa crumble',
     price: 11,
+    image: 'chocolate-lava-cake',
   },
   {
     id: 'menu-21',
@@ -159,6 +167,7 @@ export const menuItems: MenuItem[] = [
     category: 'Desserts',
     description: 'Vanilla custard, caramelized sugar, fresh berries',
     price: 10,
+    image: 'creme-brulee',
   },
   {
     id: 'menu-22',
@@ -166,6 +175,7 @@ export const menuItems: MenuItem[] = [
     category: 'Coffee & tea',
     description: 'Freshly brewed double espresso',
     price: 4,
+    image: 'espresso',
   },
   {
     id: 'menu-23',
@@ -173,6 +183,7 @@ export const menuItems: MenuItem[] = [
     category: 'Coffee & tea',
     description: 'Espresso, steamed milk, milk foam',
     price: 5,
+    image: 'cappuccino',
   },
   {
     id: 'menu-24',

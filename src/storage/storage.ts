@@ -32,7 +32,6 @@ export async function writeValue<T>(key: string, value: T): Promise<void> {
   try {
     await AsyncStorage.setItem(key, JSON.stringify(value));
   } catch {
-    // storage is best-effort; the in-memory state stays authoritative for the session
   }
 }
 
@@ -40,7 +39,6 @@ export async function removeValue(key: string): Promise<void> {
   try {
     await AsyncStorage.removeItem(key);
   } catch {
-    // ignore
   }
 }
 

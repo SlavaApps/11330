@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, PropsWithChildren } from 'react';
 import { Animated, Easing, StyleProp, ViewStyle } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 
 type Direction = 'up' | 'down' | 'left' | 'right' | 'none';
 
@@ -24,10 +25,15 @@ export function Reveal({
   enabled = true,
 }: RevealProps): React.JSX.Element {
   const progress = useRef(new Animated.Value(enabled ? 0 : 1)).current;
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     if (!enabled) {
       progress.setValue(1);
+      return;
+    }
+    progress.setValue(0);
+    if (!isFocused) {
       return;
     }
     const animation = Animated.timing(progress, {
@@ -39,7 +45,7 @@ export function Reveal({
     });
     animation.start();
     return () => animation.stop();
-  }, [progress, delay, duration, enabled]);
+  }, [progress, delay, duration, enabled, isFocused]);
 
   const transform = useMemo(() => {
     const list: Animated.WithAnimatedArray<

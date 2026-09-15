@@ -192,7 +192,7 @@ export function MatchProvider({ children }: PropsWithChildren): React.JSX.Elemen
     StorageKeys.savedMatches,
     [],
   );
-  const [tick, setTick] = React.useState(0);
+  const [now, setNow] = React.useState(Date.now);
 
   const running = match.startedAt !== null;
 
@@ -200,7 +200,7 @@ export function MatchProvider({ children }: PropsWithChildren): React.JSX.Elemen
     if (!running) {
       return;
     }
-    const timer = setInterval(() => setTick(value => value + 1), 1000);
+    const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
   }, [running]);
 
@@ -208,9 +208,8 @@ export function MatchProvider({ children }: PropsWithChildren): React.JSX.Elemen
     if (!match.startedAt) {
       return 0;
     }
-    return Math.max(0, Math.floor((Date.now() - match.startedAt) / 1000));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [match.startedAt, tick]);
+    return Math.max(0, Math.floor((now - match.startedAt) / 1000));
+  }, [match.startedAt, now]);
 
   const value = useMemo<MatchContextValue>(() => {
     const pushEvent = (player: 1 | 2, points: number, label: string, foul: boolean) =>
