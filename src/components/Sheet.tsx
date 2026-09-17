@@ -3,6 +3,9 @@ import {
   Animated,
   Easing,
   Modal,
+  KeyboardAvoidingView,
+  Platform,
+  useWindowDimensions,
   Pressable,
   ScrollView,
   StyleProp,
@@ -12,7 +15,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, gradients, radius, scale, screenHeight } from '../theme';
+import { colors, gradients, radius, scale } from '../theme';
 
 interface SheetProps extends PropsWithChildren {
   visible: boolean;
@@ -29,12 +32,13 @@ export function Sheet({
   onClose,
   children,
   style,
-  scrollable = false,
+  scrollable = true,
   dismissOnBackdrop = true,
   showHandle = true,
   maxHeightRatio = 0.9,
 }: SheetProps): React.JSX.Element {
   const insets = useSafeAreaInsets();
+  const { height: screenHeight } = useWindowDimensions();
   const progress = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -62,7 +66,9 @@ export function Sheet({
 
   return (
     <Modal visible={visible} transparent animationType="none" onRequestClose={onClose}>
-      <View style={styles.root}>
+      <KeyboardAvoidingView
+        style={[styles.root, { paddingTop: insets.top }]}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <Animated.View style={[StyleSheet.absoluteFill, { opacity: progress }]}>
           <Pressable
             accessibilityRole="button"
@@ -77,7 +83,7 @@ export function Sheet({
             {
               opacity: progress,
               transform: [{ translateY }],
-              maxHeight: screenHeight * maxHeightRatio,
+              maxHeight: Math.min(screenHeight * maxHeightRatio, screenHeight - insets.top),
               paddingBottom: Math.max(insets.bottom, scale(16)),
             },
           ]}>
@@ -89,6 +95,7 @@ export function Sheet({
           />
           {scrollable ? (
             <ScrollView
+              keyboardShouldPersistTaps="handled"
               bounces={false}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={styles.scrollContent}>
@@ -98,7 +105,7 @@ export function Sheet({
             inner
           )}
         </Animated.View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }
@@ -117,6 +124,7 @@ export function CenterModal({
   style,
   dismissOnBackdrop = true,
 }: CenterModalProps): React.JSX.Element {
+  const insets = useSafeAreaInsets();
   const progress = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -132,7 +140,12 @@ export function CenterModal({
 
   return (
     <Modal visible={visible} transparent animationType="none" onRequestClose={onClose}>
-      <View style={styles.centerRoot}>
+      <KeyboardAvoidingView
+        style={[styles.centerRoot, {
+          paddingTop: insets.top + scale(16),
+          paddingBottom: insets.bottom + scale(16),
+        }]}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <Animated.View style={[StyleSheet.absoluteFill, { opacity: progress }]}>
           <Pressable
             accessibilityRole="button"
@@ -158,9 +171,11 @@ export function CenterModal({
             end={{ x: 1, y: 1 }}
             style={StyleSheet.absoluteFill}
           />
-          <View style={styles.centerInner}>{children}</View>
+          <ScrollView bounces={false} keyboardShouldPersistTaps="handled" contentContainerStyle={styles.centerInner}>
+            {children}
+          </ScrollView>
         </Animated.View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }
@@ -174,6 +189,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.overlay,
   },
   sheetWrap: {
+    flexShrink: 1,
     borderTopLeftRadius: radius.xl,
     borderTopRightRadius: radius.xl,
     borderTopWidth: 1,
@@ -204,6 +220,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: scale(24),
   },
   centerCard: {
+    maxHeight: '100%',
+    flexShrink: 1,
     width: '100%',
     maxWidth: scale(360),
     borderRadius: radius.xl,

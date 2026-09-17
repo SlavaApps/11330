@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useEffect, useCallback, useRef, useState } from 'react';
 import {
   Animated,
   Image,
@@ -21,7 +21,6 @@ import { Reveal } from '../components/Reveal';
 import {
   colors,
   hitSlop,
-  isCompactHeight,
   layout,
   radius,
   scale,
@@ -72,10 +71,17 @@ const slides: Slide[] = [
 type Props = NativeStackScreenProps<RootStackParamList, 'Onboarding'>;
 
 export function OnboardingScreen({ navigation }: Props): React.JSX.Element {
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
+  const isCompactHeight = height < 700;
   const scrollRef = useRef<ScrollView>(null);
   const scrollX = useRef(new Animated.Value(0)).current;
   const [index, setIndex] = useState(0);
+
+  const currentIndex = useRef(index);
+  currentIndex.current = index;
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ x: currentIndex.current * width, animated: false });
+  }, [width]);
 
   const finish = useCallback(() => {
     writeValue(StorageKeys.onboarding, true);
@@ -175,7 +181,12 @@ export function OnboardingScreen({ navigation }: Props): React.JSX.Element {
           });
 
           return (
-            <View key={slide.id} style={[styles.slide, { width }]}>
+            <ScrollView
+              key={slide.id}
+              style={{ width }}
+              contentContainerStyle={styles.slide}
+              showsVerticalScrollIndicator={false}
+              bounces={false}>
               <View style={styles.artArea}>
                 <LinearGradient
                   colors={['rgba(59,130,246,0.2)', 'rgba(59,130,246,0)']}
@@ -210,7 +221,7 @@ export function OnboardingScreen({ navigation }: Props): React.JSX.Element {
                 <Text style={[typography.display, styles.title]}>{slide.title}</Text>
                 <Text style={[typography.body, styles.body]}>{slide.body}</Text>
               </Animated.View>
-            </View>
+            </ScrollView>
           );
         })}
       </Animated.ScrollView>
@@ -269,15 +280,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   slide: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: scale(layout.gutter + 4),
   },
   artArea: {
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    maxHeight: '54%',
+    paddingVertical: scale(16),
   },
   artGlow: {
     position: 'absolute',

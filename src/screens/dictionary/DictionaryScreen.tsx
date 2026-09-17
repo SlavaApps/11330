@@ -191,6 +191,8 @@ const styles = StyleSheet.create({
   },
   quizFooter: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: scale(12),
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: scale(18),

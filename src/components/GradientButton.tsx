@@ -107,7 +107,8 @@ export function GradientButton({
           style={[
             styles.button,
             {
-              height: scale(dimensions.height),
+              minHeight: Math.max(44, scale(dimensions.height)),
+              paddingVertical: scale(10),
               paddingHorizontal: scale(dimensions.padding),
               borderRadius: radius.pill,
             },
@@ -126,10 +127,9 @@ export function GradientButton({
             </View>
           ) : null}
           <Text
-            numberOfLines={1}
             style={[
               typography.button,
-              { color: labelColor, fontSize: fontSize(dimensions.font) },
+              { color: labelColor, fontSize: fontSize(dimensions.font), flexShrink: 1, textAlign: 'center' },
               labelStyle,
             ]}>
             {label}
