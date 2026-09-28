@@ -21,6 +21,7 @@ import { SectionLabel } from '../../components/Badge';
 import { useProfile } from '../../context/ProfileContext';
 import { useLearn } from '../../context/LearnContext';
 import { useQuizStats } from '../../context/QuizContext';
+import { usePractice } from '../../context/PracticeContext';
 import { useMatch } from '../../context/MatchContext';
 import { usePlans } from '../../context/PlansContext';
 import { lessons } from '../../data/lessons';
@@ -38,6 +39,7 @@ export function ProfileScreen({ navigation }: Props): React.JSX.Element {
   const { completedCount, resetAllProgress } = useLearn();
   const { stats, resetStats } = useQuizStats();
   const { savedMatches, clearHistory } = useMatch();
+  const { state: practice, dispatch: dispatchPractice } = usePractice();
   const { planCount, clearPlans } = usePlans();
 
   const [name, setName] = useState(profile.name);
@@ -139,6 +141,7 @@ export function ProfileScreen({ navigation }: Props): React.JSX.Element {
               <StatRow label="Modules completed" value={`${completedCount} of ${lessons.length}`} />
               <StatRow label="Best quiz score" value={stats.bestScore > 0 ? `${stats.bestScore} pts` : '—'} />
               <StatRow label="Matches saved" value={savedMatches.length > 0 ? String(savedMatches.length) : '—'} />
+              <StatRow label="Practice sets" value={String(practice.history.length)} />
               <StatRow label="Events planned" value={planCount > 0 ? String(planCount) : '—'} last />
             </Card>
           </Reveal>
@@ -159,7 +162,7 @@ export function ProfileScreen({ navigation }: Props): React.JSX.Element {
       <ConfirmDialog
         visible={confirmReset}
         title="Reset all app data?"
-        message="Your details, module progress, quiz scores, saved matches, event plans and table requests will be removed from this device. This cannot be undone."
+        message="Your details, module progress, quiz scores, saved matches, practice sessions, event plans and table requests will be removed from this device. This cannot be undone."
         confirmLabel="Reset everything"
         onCancel={() => setConfirmReset(false)}
         onConfirm={() => {
@@ -168,6 +171,7 @@ export function ProfileScreen({ navigation }: Props): React.JSX.Element {
           resetAllProgress();
           resetStats();
           clearHistory();
+          dispatchPractice({ type: 'reset' });
           clearPlans();
           setName('');
           setMemberNumber('');

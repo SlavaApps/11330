@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const PREFIX = '@shorelines_snooker/';
 
 export const StorageKeys = {
+  practice: `${PREFIX}practice`,
   onboarding: `${PREFIX}onboarding_complete`,
   profile: `${PREFIX}profile`,
   lessonProgress: `${PREFIX}lesson_progress`,

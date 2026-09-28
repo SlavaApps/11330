@@ -15,6 +15,8 @@ import { Sheet } from '../../components/Sheet';
 import { QrBlock } from '../../components/QrBlock';
 import { lessons, lessonFilters, LessonFilter } from '../../data/lessons';
 import { useProfile } from '../../context/ProfileContext';
+import { usePractice } from '../../context/PracticeContext';
+import { sessionsThisWeek } from '../../utils/practice';
 import { useLearn } from '../../context/LearnContext';
 import { colors, fontSize, layout, radius, scale, typography } from '../../theme';
 import { greeting, initials } from '../../utils/format';
@@ -26,6 +28,7 @@ type Props = NativeStackScreenProps<LearnStackParamList, 'LearnHome'>;
 export function LearnScreen({ navigation }: Props): React.JSX.Element {
   const { profile, hasProfile, requestActivation, confirmActivation } = useProfile();
   const { statusFor, percentFor, completedCount, continueLesson } = useLearn();
+  const { state: practice, hydrated: practiceReady } = usePractice();
   const [filter, setFilter] = useState<LessonFilter>('All');
   const [codeVisible, setCodeVisible] = useState(false);
 
@@ -116,6 +119,22 @@ export function LearnScreen({ navigation }: Props): React.JSX.Element {
                   </Text>
                   <Text style={[typography.tiny, styles.metaValue]}>{overall}%</Text>
                 </View>
+              </Card>
+            </Reveal>
+
+            <Reveal delay={220} style={styles.block}>
+              <Card highlight contentStyle={styles.practiceCard}>
+                <SectionLabel label="Put learning into practice" />
+                <Text style={typography.subheading}>Your training companion</Text>
+                <Text style={typography.small}>
+                  {practiceReady
+                    ? practice.active
+                      ? `Resume your set · ${practice.active.shots.length}/${practice.active.target} attempts recorded`
+                      : `${sessionsThisWeek(practice.history)}/${practice.weeklyGoal} sets this week · Explore drills and track your accuracy`
+                    : 'Loading your practice progress…'}
+                </Text>
+                <GradientButton label={practice.active ? 'Resume practice' : 'Open practice'}
+                  size="md" onPress={() => navigation.navigate('Practice')} />
               </Card>
             </Reveal>
 
@@ -256,6 +275,7 @@ function LessonRow({ lesson, status, percent, onPress }: LessonRowProps): React.
 }
 
 const styles = StyleSheet.create({
+  practiceCard: { gap: scale(12) },
   listContent: {
     paddingHorizontal: scale(layout.gutter),
     paddingBottom: scale(layout.tabBarHeight + 46),

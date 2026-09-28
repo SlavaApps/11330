@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+import { PracticeProvider } from './PracticeContext';
 import { ProfileProvider } from './ProfileContext';
 import { LearnProvider } from './LearnContext';
 import { QuizProvider } from './QuizContext';
@@ -13,7 +14,9 @@ export function AppProvider({ children }: PropsWithChildren): React.JSX.Element 
         <QuizProvider>
           <MatchProvider>
             <PlansProvider>
-              <OrderProvider>{children}</OrderProvider>
+              <OrderProvider>
+                <PracticeProvider>{children}</PracticeProvider>
+              </OrderProvider>
             </PlansProvider>
           </MatchProvider>
         </QuizProvider>

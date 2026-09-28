@@ -2,6 +2,7 @@ import type { NavigatorScreenParams } from '@react-navigation/native';
 
 export type LearnStackParamList = {
   LearnHome: undefined;
+  Practice: undefined;
   Lesson: { lessonId: string };
   Profile: undefined;
 };

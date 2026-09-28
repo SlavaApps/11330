@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TabBar } from './TabBar';
+import { PracticeScreen } from '../screens/practice/PracticeScreen';
 import { LearnScreen } from '../screens/learn/LearnScreen';
 import { LessonScreen } from '../screens/learn/LessonScreen';
 import { ProfileScreen } from '../screens/learn/ProfileScreen';
@@ -37,6 +38,7 @@ function LearnNavigator(): React.JSX.Element {
   return (
     <LearnStack.Navigator screenOptions={stackOptions}>
       <LearnStack.Screen name="LearnHome" component={LearnScreen} />
+      <LearnStack.Screen name="Practice" component={PracticeScreen} />
       <LearnStack.Screen name="Lesson" component={LessonScreen} />
       <LearnStack.Screen
         name="Profile"
