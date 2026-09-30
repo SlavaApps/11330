@@ -48,10 +48,10 @@ export const clubEvents: ClubEvent[] = [
     dateLabel: 'Saturday 19 September',
     isoDate: '2026-09-19T15:00:00',
     timeLabel: '15:00 – 18:00',
-    venue: 'Shorelines Casino Thousand Islands · Gananoque',
+    venue: 'Shorelines Thousand Islands · Gananoque',
     detail: 'Quarter-final · Shorelines regional stage',
     description:
-      'The 2026 Great Canadian Slot Classic reaches Shorelines Casino Thousand Islands with an official quarter-final event. Across the three Shorelines qualifying events, 24 top finishers advance to the semifinal at Pickering Casino Resort.',
+      'The 2026 Great Canadian Slot Classic reaches Shorelines Thousand Islands with an official quarter-final event. Across the three Shorelines qualifying events, 24 top finishers advance to the semifinal at Pickering Resort.',
     format: 'Quarter-final · 24 finishers advance',
     tournament: true,
   },
@@ -63,7 +63,7 @@ export const clubEvents: ClubEvent[] = [
     dateLabel: 'Friday 25 September',
     isoDate: '2026-09-25T17:00:00',
     timeLabel: '17:00 – 20:00',
-    venue: 'Participating Shorelines Casinos',
+    venue: 'Participating Shorelines',
     detail: 'Four scheduled draws',
     description:
       'The September Possibilities+ campaign concludes with four draws and year-long prize packages that may include lottery tickets, concert tickets or dining vouchers.',
@@ -77,10 +77,10 @@ export const clubEvents: ClubEvent[] = [
     dateLabel: 'Weekly · schedule varies',
     isoDate: '2026-09-26T20:00:00',
     timeLabel: 'Schedule varies',
-    venue: 'Shorelines Casino Belleville',
+    venue: 'Shorelines Belleville',
     detail: 'Local & guest performers',
     description:
-      'Regular live music is part of the entertainment programme at Shorelines Casino Belleville. The official Shorelines page describes performances by local and guest artists covering styles from soul and jazz to rock. The site currently identifies the programme as weekly without publishing one fixed performer or time for every date.',
+      'Regular live music is part of the entertainment programme at Shorelines Belleville. The official Shorelines page describes performances by local and guest artists covering styles from soul and jazz to rock. The site currently identifies the programme as weekly without publishing one fixed performer or time for every date.',
     tournament: false,
   },
   {
@@ -90,10 +90,10 @@ export const clubEvents: ClubEvent[] = [
     dateLabel: 'Saturday 3 October',
     isoDate: '2026-10-03T15:00:00',
     timeLabel: '15:00 – 18:00',
-    venue: 'Shorelines Casino Belleville',
+    venue: 'Shorelines Belleville',
     detail: 'Quarter-final · Shorelines regional stage',
     description:
-      'The regional tournament continues in Belleville with another three-hour competition session. Qualified Shorelines players compete for advancement toward the November semifinal at Pickering Casino Resort.',
+      'The regional tournament continues in Belleville with another three-hour competition session. Qualified Shorelines players compete for advancement toward the November semifinal at Pickering Resort.',
     format: 'Quarter-final · three-hour session',
     tournament: true,
   },
@@ -104,7 +104,7 @@ export const clubEvents: ClubEvent[] = [
     dateLabel: 'Saturday 17 October',
     isoDate: '2026-10-17T16:00:00',
     timeLabel: '16:00 – 19:00',
-    venue: 'Shorelines Casino Peterborough',
+    venue: 'Shorelines Peterborough',
     detail: 'Quarter-final · final Shorelines stop',
     description:
       'Peterborough hosts the third listed Shorelines stage of the 2026 tournament series, completing the regional Shorelines schedule before the semifinal round at Pickering.',

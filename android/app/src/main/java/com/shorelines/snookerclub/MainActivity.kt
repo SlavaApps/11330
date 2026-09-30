@@ -1,4 +1,4 @@
-package com.shorelinescasinosnookerclub
+package com.shorelines.snookerclub
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

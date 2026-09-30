@@ -1,4 +1,4 @@
-package com.shorelinescasinosnookerclub
+package com.shorelines.snookerclub
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -41,7 +41,7 @@ export function MembershipCard({
             <View style={styles.brandRow}>
               <Image source={images.logo} style={styles.brandMarkSmall} resizeMode="contain" />
               <View style={styles.brandText}>
-                <Text style={[typography.label, styles.brandTitle]}>SHORELINES CASINO</Text>
+                <Text style={[typography.label, styles.brandTitle]}>SHORELINES</Text>
                 <Text style={[typography.tiny, styles.brandSub]}>SNOOKER CLUB</Text>
               </View>
             </View>
@@ -54,7 +54,7 @@ export function MembershipCard({
           <Text style={[typography.body, styles.inactiveCopy]}>
             {isPending
               ? 'Your activation code has been generated. Show it at the front desk and a member of staff will confirm your tier.'
-              : 'Your digital tier card is waiting for activation by Shorelines Casino staff.'}
+              : 'Your digital tier card is waiting for activation by Shorelines staff.'}
           </Text>
 
           <GradientButton
@@ -100,7 +100,7 @@ export function MembershipCard({
               <Image source={images.logo} style={styles.brandMark} resizeMode="contain" />
             </View>
             <View style={styles.brandText}>
-              <Text style={[typography.label, styles.brandTitle]}>SHORELINES CASINO</Text>
+              <Text style={[typography.label, styles.brandTitle]}>SHORELINES</Text>
               <Text style={[typography.tiny, styles.brandSub]}>SNOOKER CLUB</Text>
             </View>
           </View>

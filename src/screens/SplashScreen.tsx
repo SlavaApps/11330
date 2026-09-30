@@ -240,7 +240,7 @@ export function SplashScreen({ navigation }: Props): React.JSX.Element {
 
         <View style={styles.footer}>
           <Text style={[typography.tiny, styles.footerText]}>
-            Shorelines Casino · Snooker Club
+            Shorelines · Snooker Club
           </Text>
         </View>
       </ImageBackground>
