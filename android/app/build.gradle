@@ -79,7 +79,7 @@ android {
 
     namespace "com.shorelines.snookerclub"
     defaultConfig {
-        applicationId "com.shorelines.snookerclub"
+        applicationId "com.test.project" // TEST SANDBOX — real value: com.shorelines.snookerclub
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2
